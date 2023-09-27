@@ -4,15 +4,25 @@ import java.util.Scanner;
 
 public class Jeu {
 	
+	/**
+	 * Point d'entrée du programme
+	 * @param args
+	 */
+	
   public static void main(String[] args) {
-    jeu();
-    replay();
+    boolean replay=true;
+    while(replay) {
+    	replay=jeu();
+    }
   }
 
-  
-	public static void jeu(){
-		int counter=0;
-	// Création de la saisie de l'utilisateur	
+  /**
+   * Méthode principale du jeu
+   * 
+   * @return true si l'utilisateur veut rejouer
+   */
+	public static boolean jeu(){
+	  int counter=0;
 	  int numberGame = randomNumber();
 	  Scanner sc = new Scanner(System.in);
 	  String message="";
@@ -26,7 +36,8 @@ public class Jeu {
 		  
 		  if(numberGame==numberUser){
 		    message= "Félicitation! Vous avez trouvé le nombre !";
-		    break;
+		    System.out.println(message);
+		    return askForReplay(sc);
 		  }else {
 			  counter++;
 			  if(numberGame<numberUser){
@@ -36,27 +47,26 @@ public class Jeu {
 			  }
 			  System.out.println(message);
 		  }  
-	  } 
-    
+	  }
+	  System.out.println("Désolé, vous n'avez pas trouvé le nombre. La réponse était : "+ numberGame);
+	  return askForReplay(sc);
 	}
    
   
-	//Demande à l'utilisateur s'il veur rejouer
-	public static void replay() {
-		Scanner sc = new Scanner(System.in);
+	/**
+	 * Demande à l'utilisateur s'il veut rejouer
+	 * @param sc Le scanner pour la saisie de l'utilisateur
+	 * @return true si l'utilisatuer veur rejouer, false sinon.
+	 */
+	public static boolean askForReplay(Scanner sc) {
 		 System.out.println("Voulez vous rejouer? oui=0 / non=1");
 		  int game = sc.nextInt();
-		  if(game==0) {
-			  jeu();
-		  }else {
-			  System.out.println("Au plaisir de vous revoir!");
-		  }
+		  return (game==0);
 	}
 
    //Génération d'un nombre entre 1 et 100 aléatoirement
   public static int randomNumber(){
-     int random = (int)(Math.random()*100);
-    return random;
+     return (int)(Math.random()*100);
   }
 
    
