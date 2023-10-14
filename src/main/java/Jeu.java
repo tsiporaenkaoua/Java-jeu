@@ -31,7 +31,7 @@ public class Jeu {
 	  
 	  while(counter<5) {
 		System.out.println("Devinez le nombre : ");
-	    //penser a gerer l'erreur qd numberGame n'est pas un chiffre************************
+	    //penser a gerer l'erreur qd numberGame n'est pas un chiffre
 		  int numberUser = sc.nextInt();
 		  
 		  if(numberGame==numberUser){
